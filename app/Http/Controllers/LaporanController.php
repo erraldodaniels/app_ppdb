@@ -45,8 +45,11 @@ class LaporanController extends Controller
                     $join->on('tb_transaksi.pengguna_id','=','users.id');
                 })->first();
         $kembalian=DB::table('tb_kembalian')->where('kode_transaksi_kembalian',$id)->first();
-
-        return view('laporan/detail',compact('transaksi','kembalian','ambil','jumlah','kasir'));
+        $modal = DB::table('tb_transaksi')->where('kode_transaksi', $id)->join('tb_barang', function ($join) {
+            $join->on('tb_transaksi.barang_id', '=', 'tb_barang.id_barang');
+        })->selectRaw('jumlah_beli * modal_barang as modal_barang')->get();
+        $keuntungan = $jumlah -  $modal->sum('modal_barang');
+        return view('laporan/detail',compact('transaksi','kembalian','ambil','jumlah','kasir','keuntungan'));
     }
 
     public function export(){

@@ -104,7 +104,7 @@
                         <td>{{$loop->iteration}}</td>
                         <td>{{$u->kode_transaksi}}</td>
                         <td>{{$u->nama_customer}}</td>
-                        <td>{{ "Rp " . number_format($total_transaksi,2,',','.')}}</td>
+                        <td>{{ "Rp " . number_format($u->total_harga,2,',','.')}}</td>
                         <td>{{$u->metode_bayar}}</td>
                         <td><a href="/laporan/{{ $u->kode_transaksi}}" class="btn btn-primary btn-sm ml-2">View</a></td>
                     </tr>

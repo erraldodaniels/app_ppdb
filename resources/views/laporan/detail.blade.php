@@ -31,36 +31,43 @@ tr:hover {background-color:#f5f5f5;}
                     <tr>
                         <th class="td">Barang</th>
                         <th class="td">Jumlah</th>
+                        <th class="td">Modal</th>
                         <th class="td">Harga</th>
                         <th class="td">Total</th>
-                    </tr> 
+                    </tr>
                     @foreach($transaksi as $u)
                     <tr>
                         <td class="td">{{$u->nama_barang}}</td>
                         <td class="td">{{$u->jumlah_beli}}</td>
+                        <td class="td">{{$u->modal_barang}}</td>
                         <td class="td">{{$u->harga_barang}}</td>
                         <td class="td">{{$u->total_harga}}</td>
                     </tr>
                     @endforeach
                     <tr>
-                        <td colspan="3" class="td" style="text-align:right">Total Harga : </td>
+                        <td colspan="4" class="td" style="text-align:right">Total Harga : </td>
                         <td class="td">{{$jumlah}}</td>
                         <input type="hidden" id="jumlah" value="{{$jumlah}}">
                     </tr>
                     <tr>
-                        <td colspan="3" class="td" style="text-align:right">Bayar : </td>
+                        <td colspan="4" class="td" style="text-align:right">Bayar : </td>
                         <td class="td">{{$kembalian->bayar}}</td>
                     </tr>
                     <tr>
-                        <td colspan="3" class="td" style="text-align:right">Kembalian : </td>
+                        <td colspan="4" class="td" style="text-align:right">Keuntungan : </td>
+                        <td class="td">{{$keuntungan}}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="4" class="td" style="text-align:right">Kembalian : </td>
                         <td class="td">{{$kembalian->kembalian}}</td>
                     </tr>
+
                 </table>
                 <div class="form-group">
                     <a href="/cetak/{{$ambil->kode_transaksi}}" class="btn btn-primary">Cetak Nota</a>
                 </div>
                 </div>
-            </div>  
+            </div>
     </div>
 </div>
 
