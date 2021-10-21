@@ -3,7 +3,7 @@
 <title>Dashboard</title>
 
 @if( Session::get('berhasil') !="")
-<div class='alert alert-success'><center><b>{{Session::get('berhasil')}}</b></center></div>        
+<div class='alert alert-success'><center><b>{{Session::get('berhasil')}}</b></center></div>
 @endif
 <div class="row">
 
@@ -31,7 +31,7 @@
       <div class="row no-gutters align-items-center">
         <div class="col mr-2">
           <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Pemasukan</div>
-          <div class="h5 mb-0 font-weight-bold text-gray-800">{{$total_transaksi}}</div>
+          <div class="h5 mb-0 font-weight-bold text-gray-800">{{ "Rp " . number_format($total_transaksi,2,',','.')}}</div>
         </div>
         <div class="col-auto">
           <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -101,10 +101,10 @@
                 <tbody>
                     @foreach ($laporan_hariini as $i => $u)
                     <tr>
-                        <td>{{++$i}}</td>
+                        <td>{{$loop->iteration}}</td>
                         <td>{{$u->kode_transaksi}}</td>
                         <td>{{$u->nama_customer}}</td>
-                        <td>{{$u->total_harga}}</td>
+                        <td>{{ "Rp " . number_format($total_transaksi,2,',','.')}}</td>
                         <td>{{$u->metode_bayar}}</td>
                         <td><a href="/laporan/{{ $u->kode_transaksi}}" class="btn btn-primary btn-sm ml-2">View</a></td>
                     </tr>
