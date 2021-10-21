@@ -54,7 +54,7 @@ class LaporanController extends Controller
 
     public function export(){
         $tanggal = date('dMY');
-        $laporan= DB::table('tb_transaksi')->whereDate('tanggal_beli', DB::raw('CURDATE()'))->get();
+        $laporan=  DB::table('tb_transaksi')->select('kode_transaksi', 'nama_customer', 'metode_bayar', DB::raw('SUM(total_harga) as total_harga'), DB::raw('GROUP_CONCAT(kode_transaksi) as kode_transaksi'))->whereDate('tanggal_beli', DB::raw('CURDATE()'))->groupBy('nama_customer')->get();
         return view("laporan.cetak.reportexcel",['laporan'=>$laporan,'tanggal'=>$tanggal]);
     }
 }

@@ -19,7 +19,6 @@ header("Content-Disposition: attachment; filename=$file_name");
         </tr>
         <tr>
             <th>No.</th>
-            <th>Kode Transaksi</th>
             <th>Nama Pembeli</th>
             <th>Total Pembelian</th>
             <th>Metode Pembayaran</th>
@@ -28,7 +27,6 @@ header("Content-Disposition: attachment; filename=$file_name");
         @foreach ($laporan as $num => $item)
         <tr>
             <td>{{$num+1}}</td>
-            <td>{{$item->kode_transaksi}}</td>
             <td>{{$item->nama_customer}}</td>
             <td>{{$item->total_harga}}</td>
             <td>{{$item->metode_bayar}}</td>
