@@ -111,15 +111,27 @@ class TransaksiController extends Controller
         if($request->kembalian < 0){
             return redirect()->back()->with('gagal','Bayaran Kurang');
         }
+        $jumlah =  DB::table('tb_transaksi')->where('kode_transaksi', $request->kode_transaksi_kembalian)
+                    ->join('tb_barang',function($join){
+                        $join->on('tb_transaksi.barang_id','=','tb_barang.id_barang');
+                    })->sum('total_harga');
+
+        $modal = DB::table('tb_transaksi')->where('kode_transaksi', $request->kode_transaksi_kembalian)->join('tb_barang', function ($join) {
+            $join->on('tb_transaksi.barang_id', '=', 'tb_barang.id_barang');
+        })->selectRaw('jumlah_beli * modal_barang as modal_barang')->get();
+
+        $jumlah_keuntungan = $jumlah - $modal->sum('modal_barang');
 
         DB::table('tb_kembalian')->insert([
             'kode_transaksi_kembalian'=>$request->kode_transaksi_kembalian,
             'bayar'=>$request->bayar,
             'kembalian'=>$request->kembalian,
+            'keuntungan'=>$jumlah_keuntungan,
             'tanggal_transaksi'=>$tanggal
         ]);
 
         $select = DB::table('tb_sementara')->get();
+        
 
         foreach ($select as $s) {
             DB::table('tb_transaksi')->insert([

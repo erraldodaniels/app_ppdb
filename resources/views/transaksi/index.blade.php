@@ -91,7 +91,6 @@ tr:hover {background-color:#f5f5f5;}
                     <tr>
                         <td colspan="4" class="td" style="text-align:right">Total Harga : </td>
                         <td class="td">{{$jumlah}}</td>
-                        <input type="hidden" id="jumlah" value="{{$jumlah}}">
                     </tr>
                     <tr>
                         <td></td>
@@ -136,6 +135,12 @@ tr:hover {background-color:#f5f5f5;}
                             <option value="QRIS" data-toggle="modal" data-target="#qrisModal">QRIS</option>
                         </select>
                     </div>
+                    <hr>
+                    <div class="form-group">
+                        <label for="">Total :</label>
+                        <h1><b>Rp. {{$jumlah}}</b></h1>
+                        <input type="hidden" id="totalbeli" value="{{$jumlah}}">
+                    </div>
                     <div class="form-group">
                         <label for="">Bayar</label>
                         <input type="hidden" name="kode_transaksi_kembalian" value="{{$max_code}}">
@@ -143,7 +148,7 @@ tr:hover {background-color:#f5f5f5;}
                     </div>
                     <div class="form-group">
                         <label for="">Kembalian</label>
-                        <input type="number" id="kembalian" name="kembalian" readonly class="form-control">
+                        <input type="number" id="kembali" name="kembalian" readonly class="form-control">
                     </div>
                     <div class="form-group text-right mt-3">
                         <input type="submit" class="btn btn-success" value="Submit">
@@ -236,10 +241,12 @@ $('#id_barang').change(function(){
 });
 
 function hitung2() {
-    var a = $("#jumlah").val();
+    var a = $("#totalbeli").val();
     var b = $("#bayar").val();
-    c = b - a; //a kali b
-    $("#kembalian").val(c);
+    console.log(a);
+    console.log(b);
+    total = b - a;
+    $("#kembali").val(total);
 }
 
 </script>
