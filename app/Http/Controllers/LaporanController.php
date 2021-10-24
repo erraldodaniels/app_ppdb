@@ -6,7 +6,7 @@ use auth;
 use DB;
 use Illuminate\Http\Request;
 use App\Exports\LaporanExport;
-
+use Carbon\Carbon;
 use Excel;
 
 class LaporanController extends Controller
@@ -53,8 +53,10 @@ class LaporanController extends Controller
     }
 
     public function export(){
-        $tanggal = date('dMY');
+        $tanggal = Carbon::now();
+        $total_transaksi =  DB::table('tb_transaksi')->whereDate('tanggal_beli', DB::raw('CURDATE()'))->sum('total_harga');
         $laporan=  DB::table('tb_transaksi')->select('kode_transaksi', 'nama_customer', 'metode_bayar', DB::raw('SUM(total_harga) as total_harga'), DB::raw('GROUP_CONCAT(kode_transaksi) as kode_transaksi'))->whereDate('tanggal_beli', DB::raw('CURDATE()'))->groupBy('nama_customer')->get();
-        return view("laporan.cetak.reportexcel",['laporan'=>$laporan,'tanggal'=>$tanggal]);
+        $keuntungan_current = DB::table('tb_kembalian')->select(DB::raw("SUM(keuntungan) AS jumlah_keuntungan"))->where('tanggal_transaksi','=',$tanggal->toDateString())->get();
+        return view("laporan.cetak.reportexcel",compact('tanggal','laporan','keuntungan_current','total_transaksi'));
     }
 }
