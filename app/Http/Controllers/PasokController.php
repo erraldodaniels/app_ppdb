@@ -89,7 +89,6 @@ class PasokController extends Controller
             'tanggal_pasok' => $request->tanggal_pasok,
             'nama_pemasok'=>$request->nama_pemasok
         ]);
-        // alihkan halaman ke halaman pegawai
         return redirect('/pasok')->with('update','Data Berhasil Di Update');
     }
 

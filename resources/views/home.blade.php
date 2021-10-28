@@ -24,6 +24,22 @@
   </div>
 </div>
 
+<div class="col-xl-3 col-md-6 mb-4">
+  <div class="card border-left-dark shadow h-100 py-2">
+    <div class="card-body">
+      <div class="row no-gutters align-items-center">
+        <div class="col mr-2">
+          <div class="text-xs font-weight-bold text-dark text-uppercase mb-1">Transaksi</div>
+          <div class="h5 mb-0 font-weight-bold text-gray-800">{{$jumlah_transaksi}}</div>
+        </div>
+        <div class="col-auto">
+          <i class="fas fa-list fa-2x text-gray-300"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- Earnings (Monthly) Card Example -->
 <div class="col-xl-3 col-md-6 mb-4">
   <div class="card border-left-success shadow h-100 py-2">
@@ -34,23 +50,7 @@
           <div class="h5 mb-0 font-weight-bold text-gray-800">{{ "Rp " . number_format($total_transaksi,2,',','.')}}</div>
         </div>
         <div class="col-auto">
-          <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="col-xl-3 col-md-6 mb-4">
-  <div class="card border-left-dark shadow h-100 py-2">
-    <div class="card-body">
-      <div class="row no-gutters align-items-center">
-        <div class="col mr-2">
-          <div class="text-xs font-weight-bold text-dark text-uppercase mb-1">Jumlah Transaksi</div>
-          <div class="h5 mb-0 font-weight-bold text-gray-800">{{$jumlah_transaksi}}</div>
-        </div>
-        <div class="col-auto">
-          <i class="fas fa-list fa-2x text-gray-300"></i>
+          <i class="fas fa-cash-register fa-2x text-gray-300"></i>
         </div>
       </div>
     </div>
@@ -64,11 +64,11 @@
     <div class="card-body">
       <div class="row no-gutters align-items-center">
         <div class="col mr-2">
-          <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Jumlah Keuntungan</div>
-          <div class="h5 mb-0 font-weight-bold text-gray-800">{{$jumlah_kasir}}</div>
+          <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Keuntungan</div>
+          <div class="h5 mb-0 font-weight-bold text-gray-800">@foreach($keuntungan_current as $num => $untung){{ "Rp " . number_format($untung->jumlah_keuntungan,2,',','.')}}@endforeach</div>
         </div>
         <div class="col-auto">
-          <i class="fas fa-user-circle fa-2x text-gray-300"></i>
+          <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
         </div>
       </div>
     </div>
