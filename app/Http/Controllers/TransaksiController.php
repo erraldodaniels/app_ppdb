@@ -120,8 +120,8 @@ class TransaksiController extends Controller
                 'barang_id'=>$s->barang_id,
                 'jumlah_beli'=>$s->jumlah_beli,
                 'total_harga'=>$s->total_harga,
-                'metode_bayar'=>$request->metodebayar,
-                'nama_customer'=>$request->namabeli,
+                'metode_bayar'=>$request->methodbayar,
+                'nama_customer'=>$request->nama_anggota,
                 'pengguna_id'=>$s->pengguna_id,
                 'tanggal_beli'=>$s->tanggal_beli       
             ]);
@@ -200,9 +200,13 @@ class TransaksiController extends Controller
     public function hapusitem($id){
 
 	DB::table('tb_sementara')->where('id_sementara',$id)->delete();
-		
 	return redirect()->back();
     }
 
-
+    public function getIdCard(Request $request){
+        $anggota = DB::table("tb_anggota")
+        ->where("kode_rfid", $request->kode_rfid)
+        ->pluck("nama_anggota","saldo_tunai");
+        return response()->json($anggota);
+    }
 }

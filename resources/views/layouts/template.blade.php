@@ -37,10 +37,10 @@
 
       <!-- Sidebar - Brand -->
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/home">
-        <div class="sidebar-brand-icon rotate-n-15">
-          <i class="fas fa-shopping-cart"></i>
+        <div class="sidebar-brand-icon">
+          <img src="{{asset('assets/img/logo.svg')}}" width="70px" alt="">
         </div>
-        <div class="sidebar-brand-text mx-3">Koperasi <div style="font-size:10pt;">Serba Usaha</div></div>
+        <div class="sidebar-brand-text mx-3">Koperasi <div style="font-size:8pt;">Serba Usaha</div></div>
       </a>
 
       <!-- Divider -->
@@ -49,7 +49,6 @@
       <!-- Nav Item - Dashboard -->
       <li class="nav-item {{ (request()->is('home*')) ? 'active' : '' }}">
         <a class="nav-link" href="{{url('home')}}">
-          <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span></a>
       </li>
 
@@ -95,8 +94,8 @@
                 </a>
                 <div id="collapseone" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item {{ (request()->is('user*')) ? 'active' : '' }}" href="{{url('user')}}">Data Admin</a>
-                        <a class="collapse-item {{ (request()->is('kasir*')) ? 'active' : '' }}" href="{{url('kasir')}}">Data Kasir</a>
+                        <a class="collapse-item {{ (request()->is('user*')) ? 'active' : '' }}" href="{{url('user')}}">Administrator</a>
+                        <a class="collapse-item {{ (request()->is('kasir*')) ? 'active' : '' }}" href="{{url('kasir')}}">Kasir</a>
                     </div>
                 </div>
             </li>

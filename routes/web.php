@@ -54,6 +54,7 @@ Route::get('/ambil2','TransaksiController@ambil2');
 Route::get('/transaksi','TransaksiController@index');
 
 Route::get('/nyokot','TransaksiController@nyokot');
+Route::get('/getIdCard','TransaksiController@getIdCard');
 Route::get('/nyokot2/{id}','TransaksiController@nyokot2');
 Route::get('/hapus/{id}','TransaksiController@hapusitem');
 Route::post('/masuk/sementara','TransaksiController@store');

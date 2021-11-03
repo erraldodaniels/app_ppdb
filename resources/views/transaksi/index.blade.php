@@ -6,15 +6,12 @@
   border-collapse: collapse;
   width: 100%;
 }
-
 .td {
   color:black;
   padding: 8px;
   text-align: left;
   border-bottom: 1px solid #ddd;
 }
-
-tr:hover {background-color:#f5f5f5;}
 </style>
 @if( Session::get('gagal') !="")
             <div class='alert alert-danger'><center><b>{{Session::get('gagal')}}</b></center></div>        
@@ -107,59 +104,79 @@ tr:hover {background-color:#f5f5f5;}
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Checkout</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-      <div class="col">
-        <div class="card shadow mb-4">
-            <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Pembayaran</h6>
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Checkout</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
-            <div class="card-body">
-                <form action="/masuk/semua" method="post">
-                    @csrf
-                    <div class="form-group">
-                        <label for="">Nama Pembeli</label>
-                        <input type="text" name="namabeli" class="form-control" required>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-5">
+                        <div class="card shadow mb-4">
+                            <div class="card-header py-3">
+                                <h6 class="m-0 font-weight-bold text-primary">Detail Customer</h6>
+                            </div>
+                            <div class="card-body">
+                                <form action="/masuk/semua" method="post">
+                                    @csrf
+                                    <div class="form-group">
+                                        <label for="">ID Card</label>
+                                        <input type="text" id="kode_rfid" name="kode_rfid" class="form-control" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="">Nama Pembeli</label>
+                                        <input type="text" id="nama_anggota" name="nama_anggota" class="form-control" readonly>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="">Saldo StarbhakPay</label>
+                                        <input type="text" id="saldo_tunai" name="saldo_tunai" class="form-control" readonly>
+                                    </div>
+                            </div>  
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="">Metode Pembayaran</label>
-                        <select class="form-control" name="metodebayar">
-                            <option value="Cash">Cash</option>
-                            <option value="QRIS" data-toggle="modal" data-target="#qrisModal">QRIS</option>
-                        </select>
+                    <div class="col-md-7">
+                        <div class="card shadow mb-4">
+                            <div class="card-header py-3">
+                                <h6 class="m-0 font-weight-bold text-primary">Payment</h6>
+                            </div>
+                            <div class="card-body">
+                                    <div class="form-group">
+                                        <label for="">Metode Pembayaran</label>
+                                        <select class="form-control" id="metodebyr" name="methodbayar" disabled>
+                                            <option value="">- Pilih Metode Pembayaran -</option>
+                                            <option value="Cash">Cash</option>
+                                            <option value="QRIS" data-toggle="modal" data-target="#qrisModal">QRIS</option>
+                                            <option value="StarPay">StarPay</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="">Total :</label>
+                                        <h1><b>Rp. {{ $jumlah }}</b></h1>
+                                        <input type="hidden" id="totalbeli" value="{{$jumlah}}">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="">Bayar</label>
+                                        <input type="hidden" name="kode_transaksi_kembalian" value="{{$max_code}}">
+                                        <input type="number" id="bayar" name="bayar" class="form-control" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="">Kembalian</label>
+                                        <input type="number" id="kembali" name="kembalian" readonly class="form-control">
+                                    </div>
+                                    <div class="form-group text-right mt-3">
+                                        <input type="submit" class="btn btn-success" value="Submit">
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
                     </div>
-                    <hr>
-                    <div class="form-group">
-                        <label for="">Total :</label>
-                        <h1><b>Rp. {{$jumlah}}</b></h1>
-                        <input type="hidden" id="totalbeli" value="{{$jumlah}}">
-                    </div>
-                    <div class="form-group">
-                        <label for="">Bayar</label>
-                        <input type="hidden" name="kode_transaksi_kembalian" value="{{$max_code}}">
-                        <input type="number" id="bayar" onkeyup="hitung2();" name="bayar" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="">Kembalian</label>
-                        <input type="number" id="kembali" name="kembalian" readonly class="form-control">
-                    </div>
-                    <div class="form-group text-right mt-3">
-                        <input type="submit" class="btn btn-success" value="Submit">
-                    </div>
-                </form>
+                </div>
             </div>
         </div>
     </div>
-      </div>
-    </div>
-  </div>
 </div>
 
 @push('scripts')
@@ -226,6 +243,7 @@ $('#id_barang').change(function(){
                 $.each(res,function(key,value){
                     $("#harga").val(key);
                     $("#nama").val(value);
+                    $("#jumlah").focus();
                     $("#jumlah").keyup(function(){
                         $("#btn_submit").focus();
                     });
@@ -240,14 +258,43 @@ $('#id_barang').change(function(){
 }, 500);
 });
 
-function hitung2() {
-    var a = $("#totalbeli").val();
-    var b = $("#bayar").val();
-    console.log(a);
-    console.log(b);
-    total = b - a;
-    $("#kembali").val(total);
-}
+$('#kode_rfid').change(function(){
+    setInterval(function(){ 
+    if($('#kode_rfid').val()!=''){
+        var id=$('#kode_rfid').val();
+        $.ajax({
+           type:"GET",
+           url:"{{url('getIdCard')}}?kode_rfid="+id,
+           success:function(res){               
+            if(res){
+                $.each(res,function(key,value){
+                    $("#saldo_tunai").val(key);
+                    $("#nama_anggota").val(value);
+                    $("#metodebyr").attr("disabled", false);
+                });
+            }else{
+                $("#saldo_tunai").empty();
+                $("#nama_anggota").empty();
+            }
+           }
+        });
+    }
+}, 500);
+});
+
+var a = $('#totalbeli').val();
+var st = $('#saldotunai').val();
+$('#metodebyr').change(function(){
+        if($('#metodebyr').val() == "StarPay"){
+            $('#metodebyr').val("StarPay");
+            $('#bayar').val(a);
+            console.log(a);
+            total = a - a;
+            $("#kembali").val(total);
+        }
+});
+
+
 
 </script>
 @endpush
