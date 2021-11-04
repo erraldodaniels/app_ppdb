@@ -53,7 +53,7 @@ header("Content-Disposition: attachment; filename=$file_name");
         <tr>
             <td></td>
             <td style="text-align: center;width:70px;font-size: 15pt;">Kasir</td>
-            <td style="text-align: center;font-size: 15pt;">Kepala Koperasi</td>
+            <td style="text-align: center;font-size: 15pt;">Bendahara Koperasi</td>
         </tr>
         <tr>
             <td style="height: 70px;"></td>

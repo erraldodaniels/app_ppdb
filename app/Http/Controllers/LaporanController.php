@@ -24,7 +24,7 @@ class LaporanController extends Controller
 
     public function index()
     {
-        $laporan= DB::table('tb_kembalian')->get();
+        $laporan= DB::table('tb_transaksi')->select('kode_transaksi', 'nama_customer', 'metode_bayar', DB::raw('SUM(total_harga) as total_harga'),'tanggal_beli')->groupBy('kode_transaksi')->get();
 
         return view('laporan/index',compact('laporan'));
     }

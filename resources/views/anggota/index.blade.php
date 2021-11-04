@@ -1,9 +1,9 @@
 @extends('layouts.template')
 @section('content')
-<title>Data Kasir</title>
+<title>Data Anggota</title>
 <div class="card shadow mb-4">
     <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">Data Kasir</h6>
+        <h6 class="m-0 font-weight-bold text-primary">Data Anggota Koperasi</h6>
     </div>
     <div class="card-body">
         <div class="table-responsive">
@@ -20,21 +20,25 @@
                 <thead>
                     <tr>
                         <th>No</th>
+                        <th>Kode RFID</th>
                         <th>Nama</th>
-                        <th>Password</th>
+                        <th>Email</th>
+                        <th>Saldo</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($user as $i => $u)
+                    @foreach ($anggota as $i => $u)
                     <tr>
                         <td>{{++$i}}</td>
-                        <td>{{$u->name}}</td>
+                        <td>{{$u->kode_rfid}}</td>
+                        <td>{{$u->nama_anggota}}</td>
                         <td>{{$u->email}}</td>
-                        <td>Password Tidak Ditampilkan</td>
+                        <td>{{$u->saldo_tunai}}</td>
                         <td>
-                            <a href="/kasir/edit/{{ $u->id}}" class="btn btn-primary btn-sm ml-2">Edit</a>
-                            <a href="/kasir/delete/{{ $u->id }}" class="btn btn-danger btn-sm ml-2"><i class="fa fa-trash"></i></a>
+                            <a href="/anggota/edit/{{ $u->kode_rfid}}" class="btn btn-primary btn-sm ml-2" data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom"><i class="fa fa-pen"></i></a>
+                            <a href="/anggota/delete/{{ $u->kode_rfid }}" class="btn btn-danger btn-sm ml-2"><i class="fa fa-trash"></i></a>
+                            <a href="/anggota/topup/{{ $u->kode_rfid }}" class="btn btn-warning btn-sm ml-2"><i class="fa fa-wallet"></i></a>
                         </td>          
                     @endforeach
                 </tbody>
@@ -54,8 +58,12 @@
         </button>
     </div>
     <div class="modal-body">
-    <form action="/kasir/store" method="post">
+    <form action="/anggota/store" method="post">
         {{ csrf_field() }}
+        <div class="form-group">
+            <label for="">Kode RFID</label>
+            <input type="text" name="rfid" class="form-control"  required>
+        </div>
         <div class="form-group">
             <label for="">Nama</label>
             <input type="text" name="name" class="form-control"  required>

@@ -93,4 +93,11 @@ class BarangController extends Controller
         return redirect('barang')->with('update','Data Berhasil Di Update');
         
     }
+
+    public function hapus($id){
+
+        DB::table('tb_barang')->where('id_barang',$id)->delete();
+
+        return redirect('barang');
+    }
 }

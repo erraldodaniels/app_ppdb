@@ -39,9 +39,7 @@ class UserController extends Controller
                 'name'=> $request->name,
                 'email' => $request->email,
                 'password'=>bcrypt($request->password),
-                'level' => 'A',
-                'latitude' => $request->lat,
-                'longitude' => $request->lng
+                'level' => 'A'
             ]);
         
         return redirect()->back()->with('masuk','Data Berhasil Di Input');
@@ -86,9 +84,7 @@ class UserController extends Controller
                 'name'=> $request->name,
                 'email' => $request->email,
                 'password'=>bcrypt($request->password),
-                'level' => 'K',
-                'latitude' => $request->lat,
-                'longitude' => $request->lng
+                'level' => 'K'
             ]);
         
         return redirect()->back()->with('masuk','Data Berhasil Di Input');
@@ -115,4 +111,67 @@ class UserController extends Controller
 
         return redirect('kasir');
     }
+
+    public function storeAnggota(Request $request){
+
+            DB::table('tb_anggota')->insert([
+                'id_anggota'=>'',
+                'kode_rfid' => $request->rfid,
+                'nama_anggota'=> $request->name,
+                'email' => $request->email,
+                'password'=>bcrypt($request->password),
+                'saldo_tunai' => 0,
+            ]);
+        
+        return redirect()->back()->with('masuk','Data Berhasil Di Input');
+    }
+
+    public function indexAnggota()
+    {
+        $anggota = DB::table('tb_anggota')->get();
+        return view('anggota/index',compact('anggota'));
+    }
+
+    public function deleteAnggota($id){
+        DB::table('tb_anggota')->where('kode_rfid', $id)->delete();
+
+        return redirect('anggota');
+    }
+
+    public function editAnggota($id){
+        $anggota = DB::table('tb_anggota')->where('kode_rfid',$id)->first();
+
+        return view('anggota/edit',compact('anggota'));
+    }
+
+    public function updateAnggota(Request $request){
+
+        DB::table('tb_anggota')->where('id_anggota',$request->id)->update([
+            'kode_rfid'=>$request->rfid,
+            'nama_anggota'=>$request->name,
+            'email'=>$request->email
+        ]);
+
+        return redirect('anggota')->with('update','Data berhasil di Update');
+    }
+
+    public function topupSaldo($id){
+        $anggotaSaldo = DB::table('tb_anggota')->where('kode_rfid',$id)->first();
+
+        return view('anggota/topup',compact('anggotaSaldo'));
+    }
+
+    public function updateSaldo(Request $request){
+
+        $saldoakhir = $request->saldoawal + $request->saldotambah;
+
+        DB::table('tb_anggota')->where('id_anggota',$request->id)->update([
+            'saldo_tunai'=>$saldoakhir,
+        ]);
+
+        return redirect('anggota')->with('update','Saldo Berhasil di Top Up');
+
+
+    }
+
 }

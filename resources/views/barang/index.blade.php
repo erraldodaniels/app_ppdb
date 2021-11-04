@@ -45,7 +45,8 @@
                         <td>{{$u->jumlah_barang}}</td>
                         <td>{{$u->harga_barang}}</td>
                         <td>
-                            <a href="/barang/edit/{{$u->id_barang}}" class="btn btn-primary btn-sm ml-2">Edit</a>
+                            <a href="/barang/edit/{{$u->id_barang}}" class="btn btn-primary btn-sm ml-2"><i class="fa fa-pen"></i></a>
+                            <a href="/barang/hapus/{{$u->id_barang}}" class="btn btn-danger btn-sm ml-2"><i class="fa fa-trash"></i></a>
                             <a href="/barang/barcode_satuan/{{$u->id_barang}}" class="btn btn-outline-warning btn-sm ml-2"><i class="fas fa-barcode mr-2"></i>Barcode</a>
                         </td>
                     </tr>

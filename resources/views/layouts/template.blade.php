@@ -96,6 +96,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item {{ (request()->is('user*')) ? 'active' : '' }}" href="{{url('user')}}">Administrator</a>
                         <a class="collapse-item {{ (request()->is('kasir*')) ? 'active' : '' }}" href="{{url('kasir')}}">Kasir</a>
+                        <a class="collapse-item {{ (request()->is('anggota*')) ? 'active' : '' }}" href="{{url('anggota')}}">Anggota</a>
                     </div>
                 </div>
             </li>

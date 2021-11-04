@@ -13,18 +13,16 @@
   text-align: left;
   border-bottom: 1px solid #ddd;
 }
-
-tr:hover {background-color:#f5f5f5;}
 </style>
 <div class="row">
     <div class="col-md-12">
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Detail Transaksi</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Detail Transaksi - {{$ambil->kode_transaksi}}</h6>
             </div>
             <div class="card-body">
                     <div class="row">
-                    <div class="col-md-9"><font color="blue">Kode Transaksi : {{$ambil->kode_transaksi}}</font><br><font color="blue">Tanggal : {{$ambil->tanggal_beli}}</font></div>
+                    <div class="col-md-9"><font color="blue">Kode Transaksi : {{$ambil->kode_transaksi}}</font><br><font color="blue">Tanggal : {{$ambil->tanggal_beli}}</font><br><font color="blue">Customer : {{$ambil->nama_customer}}</font><br><font color="blue">Metode Pembayaran : {{$ambil->metode_bayar}}</font></div>
                     <div class="col-md-3"><font color="blue">Kasir : {{$kasir->name}}</font></div>
                     </div>
                     <table class="table mt-3">

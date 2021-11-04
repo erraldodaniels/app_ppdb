@@ -131,7 +131,7 @@
                                         <input type="text" id="nama_anggota" name="nama_anggota" class="form-control" readonly>
                                     </div>
                                     <div class="form-group">
-                                        <label for="">Saldo StarbhakPay</label>
+                                        <label for="">Saldo StarPay</label>
                                         <input type="text" id="saldo_tunai" name="saldo_tunai" class="form-control" readonly>
                                     </div>
                             </div>  
@@ -165,6 +165,7 @@
                                     <div class="form-group">
                                         <label for="">Kembalian</label>
                                         <input type="number" id="kembali" name="kembalian" readonly class="form-control">
+                                        <input type="hidden" id="updatesld" name="updtsld">
                                     </div>
                                     <div class="form-group text-right mt-3">
                                         <input type="submit" class="btn btn-success" value="Submit">
@@ -283,14 +284,27 @@ $('#kode_rfid').change(function(){
 });
 
 var a = $('#totalbeli').val();
-var st = $('#saldotunai').val();
 $('#metodebyr').change(function(){
         if($('#metodebyr').val() == "StarPay"){
             $('#metodebyr').val("StarPay");
             $('#bayar').val(a);
             console.log(a);
             total = a - a;
-            $("#kembali").val(total);
+            $("#kembali").val(total);          
+            var st = $('#saldo_tunai').val();
+            console.log(st);
+            updtbyr = st - a;
+            $("#updatesld").val(updtbyr);
+        } else if($('#metodebyr').val() == "QRIS"){
+            $('#metodebyr').val("QRIS");
+            $('#bayar').val(a);
+            console.log(a);
+            total = a - a;
+            $("#kembali").val(total);          
+            var st = $('#saldo_tunai').val();
+            console.log(st);
+            updtbyr = st - a;
+            $("#updatesld").val(updtbyr);
         }
 });
 

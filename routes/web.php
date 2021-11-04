@@ -36,12 +36,21 @@ Route::post('/kasir/update','UserController@update2');
 Route::get('/kasir/edit/{id}','UserController@edit2');
 Route::get('/kasir/delete/{id}', 'UserController@delete2');
 
+Route::get('/anggota','UserController@indexAnggota');
+Route::post('/anggota/store','UserController@storeAnggota');
+Route::get('/anggota/delete/{id}','UserController@deleteAnggota');
+Route::get('/anggota/edit/{id}','UserController@editAnggota');
+Route::post('/anggota/update','UserController@updateAnggota');
+Route::get('/anggota/topup/{id}','UserController@topupSaldo');
+Route::post('/anggota/updatesaldo','UserController@updateSaldo');
+
 Route::get('/barang','BarangController@index');
 Route::get('/cetak','BarangController@cetak');
 Route::get('/barang/barcode_satuan/{id_barang}','BarangController@barcode_satuan');
 Route::post('/barang/store','BarangController@store');
 Route::post('/barang/update','BarangController@update');
 Route::get('/barang/edit/{id_barang}','BarangController@edit');
+Route::get('/barang/hapus/{id_barang}','BarangController@hapus');
 
 Route::get('/pasok','PasokController@index');
 Route::post('/pasok/store','PasokController@store');

@@ -146,6 +146,11 @@ class TransaksiController extends Controller
             'tanggal_transaksi'=>$tanggal
         ]);
 
+        
+        DB::table('tb_anggota')
+        ->where('nama_anggota', $request->nama_anggota)
+        ->update(['saldo_tunai' => $request->updtsld]);
+
         foreach ($select as $s) {
             DB::table('tb_sementara')->truncate([
                 'kode_transaksi'=>$s->kode_transaksi,
