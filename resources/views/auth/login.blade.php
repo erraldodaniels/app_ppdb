@@ -8,7 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-
+  
   <title>Koperasi Serba Usaha - Login</title>
 
   <!-- Custom fonts for this template-->
@@ -65,12 +65,6 @@
                     
                   </form>
                   <hr>
-                  <!-- <div class="text-center">
-                    <a class="small" href="forgot-password.html">Forgot Password?</a>
-                  </div> -->
-                  <!-- <div class="text-center">
-                    <a class="small" href="register.html">Create an Account!</a>
-                  </div> -->
                 </div>
               </div>
             </div>

@@ -165,13 +165,15 @@ class UserController extends Controller
 
         $saldoakhir = $request->saldoawal + $request->saldotambah;
 
-        DB::table('tb_anggota')->where('id_anggota',$request->id)->update([
-            'saldo_tunai'=>$saldoakhir,
-        ]);
+        DB::table('tb_anggota')->where('id_anggota',$request->id)->update(['saldo_tunai'=>$saldoakhir,]);
 
         return redirect('anggota')->with('update','Saldo Berhasil di Top Up');
+    }
 
+    public function loginAnggota(){
 
+        return view('profile/login');
+    
     }
 
 }

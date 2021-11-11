@@ -76,3 +76,8 @@ Route::get('/laporan/{kode_transaksi_kembalian}','LaporanController@detail');
 
 Route::get('change-password', 'ChangePasswordController@index');
 Route::post('change-password', 'ChangePasswordController@store')->name('change.password');
+
+//Route::get('/profile', 'ProfileController@index');
+//Route::post('/profile/login', 'ProfileController@login');
+//Route::get('/profile/auth', 'ProfileController@cekAuth');
+

@@ -301,10 +301,6 @@ $('#metodebyr').change(function(){
             console.log(a);
             total = a - a;
             $("#kembali").val(total);          
-            var st = $('#saldo_tunai').val();
-            console.log(st);
-            updtbyr = st - a;
-            $("#updatesld").val(updtbyr);
         }
 });
 

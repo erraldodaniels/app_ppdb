@@ -34,7 +34,6 @@ class TransaksiController extends Controller
 
     public function ambil(Request $request)
     {
-            
         $barang = DB::table("tb_barang")
         ->where("kategori_id",$request->kategori_id)
         ->pluck("nama_barang","id_barang");
