@@ -27,6 +27,7 @@ class HomeController extends Controller
     public function index()
     {   
         $tanggal= Carbon::now();
+        $jumlah_ref = DB::table('tbl_user_reference')->count();
         $jumlah_barang =  DB::table('tb_barang')->count();
         $total_transaksi =  DB::table('tb_transaksi')->whereDate('tanggal_beli', DB::raw('CURDATE()'))->sum('total_harga');
         $jumlah_kasir =  DB::table('users')->where('level','K')->count();
@@ -34,6 +35,6 @@ class HomeController extends Controller
         $laporan_hariini= DB::table('tb_transaksi')->select('kode_transaksi', 'nama_customer', 'metode_bayar', DB::raw('SUM(total_harga) as total_harga'))->whereDate('tanggal_beli', DB::raw('CURDATE()'))->groupBy('kode_transaksi')->get();
         $keuntungan_current = DB::table('tb_kembalian')->select(DB::raw("SUM(keuntungan) AS jumlah_keuntungan"))->where('tanggal_transaksi','=',$tanggal->toDateString())->get();
 
-        return view('home',compact('jumlah_barang','total_transaksi','jumlah_transaksi','jumlah_kasir','laporan_hariini','keuntungan_current'));
+        return view('home',compact('jumlah_ref','jumlah_barang','total_transaksi','jumlah_transaksi','jumlah_kasir','laporan_hariini','keuntungan_current'));
     }
 }

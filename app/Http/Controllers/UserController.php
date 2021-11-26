@@ -176,4 +176,33 @@ class UserController extends Controller
     
     }
 
+    public function indexReferensi(){
+        $user_ref = DB::table('tbl_user_reference')->get();
+        $kelas = DB::table('tbl_kelas')->get();
+        return view('referensi/index',compact('user_ref','kelas'));
+    }
+
+    public function addReferensi(Request $request){
+
+        $text = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ123457890';
+        $panj = 7;
+        $txtl = strlen($text)-1;
+        $koderef= '';
+        for($i=1; $i<=$panj; $i++){
+            $koderef .= $text[rand(0, $txtl)];
+        }
+
+        DB::table('tbl_user_reference')->insert([
+            'id_user_ref'=>'',
+            'nama'=> $request->name,
+            'no_hp'=> $request->no_hp,
+            'email' => $request->email,
+            'tipe_ref' => $request->tipe_ref,
+            'kelas' => $request->kelas,
+            'sekolah' => $request->sekolah,
+            'ref_code' => $koderef
+        ]);
+    
+    return redirect()->back()->with('masuk','Data Berhasil Di Input');
+    }
 }

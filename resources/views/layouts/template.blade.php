@@ -40,7 +40,7 @@
         <div class="sidebar-brand-icon">
           <img src="{{asset('assets/img/logo.svg')}}" width="70px" alt="">
         </div>
-        <div class="sidebar-brand-text mx-3">Koperasi <div style="font-size:8pt;">Serba Usaha</div></div>
+        <div class="sidebar-brand-text mx-3">PPDB <div style="font-size:8pt;">STARBHAK</div></div>
       </a>
 
       <!-- Divider -->
@@ -57,7 +57,7 @@
 
       <!-- Heading -->
       <div class="sidebar-heading">
-        Point Of Sales
+        Pendaftaran
       </div>
 
       <!-- Nav Item - Pages Collapse Menu -->
@@ -67,7 +67,7 @@
      
       <!-- Nav Item - Charts -->
       @if(Auth::user()->level=='A')
-      <li class="nav-item {{ (request()->is('transaksi*')) ? 'active' : '' }}">
+      <!--<li class="nav-item {{ (request()->is('transaksi*')) ? 'active' : '' }}">
         <a class="nav-link" href="{{url('transaksi')}}">
           <i class="fas fa-fw fa-cash-register  "></i>
           <span>Transaksi</span></a>
@@ -85,28 +85,28 @@
                         <a class="collapse-item {{ (request()->is('pasok*')) ? 'active' : '' }}" href="{{url('pasok')}}">Re-Stock Barang</a>
                     </div>
                 </div>
-            </li>
+            </li>-->
       <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseone"
                     aria-expanded="true" aria-controls="collapseone">
                     <i class="fas fa-fw fa-users"></i>
-                    <span>User</span>
+                    <span>Pendaftar</span>
                 </a>
                 <div id="collapseone" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item {{ (request()->is('user*')) ? 'active' : '' }}" href="{{url('user')}}">Administrator</a>
-                        <a class="collapse-item {{ (request()->is('kasir*')) ? 'active' : '' }}" href="{{url('kasir')}}">Kasir</a>
-                        <a class="collapse-item {{ (request()->is('anggota*')) ? 'active' : '' }}" href="{{url('anggota')}}">Anggota</a>
+                        <!--<a class="collapse-item {{ (request()->is('user*')) ? 'active' : '' }}" href="{{url('user')}}">Administrator</a>
+                        <a class="collapse-item {{ (request()->is('kasir*')) ? 'active' : '' }}" href="{{url('kasir')}}">Kasir</a>-->
+                        <a class="collapse-item {{ (request()->is('referensi*')) ? 'active' : '' }}" href="{{url('referensi')}}">Referensi Pendaftar</a>
                     </div>
                 </div>
             </li>
             
-
+<!--
       <li class="nav-item {{ (request()->is('laporan*')) ? 'active' : '' }}">
         <a class="nav-link" href="{{url('laporan')}}">
           <i class="fas fa-fw fa-file  "></i>
           <span>Laporan</span></a>
-      </li>
+      </li>-->
       @endif
       @if(Auth::user()->level=='K')
 
@@ -234,7 +234,7 @@
             <span aria-hidden="true">×</span>
           </button>
         </div>
-        <div class="modal-body">Jangan lupa untuk rekap laporan penjualan hari ini terlebih dulu ya.</div>
+        <div class="modal-body">Terima Kasih</div>
         <div class="modal-footer">
           <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
          <a class="btn btn-primary" href="{{ route('logout') }}"
